@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,inital-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button @click="sub">-</button>
+    <span>{{num}}</span>
+    <button @click="add">+</button>
+</div>
+<div id="img">
+    <input type="button" value="切换图片是否显示" @click="changeIsShow">
+    <img src="20220419074926_2cec9.jpg" v-show="isShow" width="300px">
+</div>
+
+<div id="ruguo">
+    <input type="button" value="切换p是否显示" @click="changeP">
+    <p v-if="true">我是一个标签</p>
+    <p v-if="isShow">我是一个标签</p>
+    <h2 v-if="temperature > 35">大于35度。热死了</h2>
+    <h2 v-if="temperature < 35">小于35度。冷死了</h2>
+    <button @click="sub">温度-</button>
+    <span>{{temperature}}</span>
+    <button @click="add">温度+</button>
+</div>
+
+<div id = "app2">
+    <img :src="imgSrc" alt="" width="200px">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            num:1  //默认为1
+        },
+        methods:{
+            add:function (){
+                if(this.num < 10){
+                    this.num++
+                }else{
+                    alert('最大值是10')
+                }
+
+            },
+            sub:function (){
+                if(this.num > 0){
+                    this.num--
+                }else{
+                    alert('最小值是0')
+                }
+            }
+        }
+    })
+
+    var img = new Vue({
+        el:"#img",
+        data:{
+            isShow:false
+        },
+        methods:{
+            changeIsShow:function(){
+                this.isShow = !this.isShow;
+            }
+        }
+    })
+
+    var ruguo = new Vue({
+        el:"#ruguo",
+        data:{
+            isShow:true,
+            temperature:40
+        },
+        methods:{
+            changeP:function () {
+                this.isShow = !this.isShow
+            },
+            add:function (){
+                this.temperature++
+            },
+            sub:function (){
+                this.temperature--
+            }
+        }
+
+    })
+
+    var app2 = new Vue({
+        el:"#app2",
+        data:{
+            imgSrc: '20220419074926_2cec9.jpg'
+        }
+    })
+</script>
+</body>
+</html>

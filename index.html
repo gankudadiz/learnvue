@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,inital-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{ school.name }}
+    <ul>
+        <li>{{ campus[0] }}</li>
+    </ul>
+</div>
+<div id="class2">
+    <h2 v-text="message+'!'"></h2>
+    <h2>差值表达器：{{message + '!'}}</h2>
+</div>
+<!--html结构挂载-->
+<div id="html">
+    <P v-html="content"></P>
+    <P v-html="href"></P>
+    <P v-text="href"></P>
+</div>
+<!--on事件结构挂载-->
+<div id="on">
+    <input type="button" value="事件绑定" v-on:click="dolt">
+    <!--v-on：可以替换成@-->
+    <input type="button" value="事件绑定" @click="dolt">
+    <input type="button" value="双击事件" @dblclick="dolt">
+    <h2 @click="changefood">{{food}}</h2>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            message:"12雅鹿",
+            school:{
+                name:"666",
+                mobile:"400-618-9090",
+            },
+            campus:['123','456','789','101112']
+        }
+    })
+
+    var class2 = new Vue({
+        el:"#class2",
+        data:{
+            message:"h2字体",
+            info:"前端移动"
+        }
+    })
+
+    var html = new Vue({
+        el:"#html",
+        data:{
+            content:"黑马",
+            href:"<a href='https://www.baidu.com'>百度</a>"
+        }
+    })
+
+    var on = new Vue({
+        el:"#on",
+        data:{
+            food:"西兰花"
+        },
+        methods:{
+            dolt:function (){
+                //逻辑
+                alert("这是一个弹窗")
+            },
+            changefood:function (){
+               // this.food = (this.food=='豆芽菜'?'西兰花':'豆芽菜');
+                 if(this.food=='豆芽菜'){
+                    this.food = '西兰花'
+                }else{
+                     this.food = '豆芽菜'
+                 }
+            }
+        }
+    })
+</script>
+</body>
+</html>

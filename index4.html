@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,inital-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="click" @click="doIT(666)">
+        <!--keyup.enter触发按键是回车-->
+        <input type="text" @keypress.enter="sayHi">
+    </div>
+    <div id="edit">
+        <input type="text" v-model="message" @keyup.enter="getMessage">
+        <input type="button" v-model="message" @click="setMessage">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        methods:{
+            doIT:function (pid){
+                console.log('123');
+                console.log(pid)
+            },
+            sayHi:function (){
+                alert('吃了没')
+            }
+        }
+    })
+
+    var edit = new Vue({
+        //v-model 双向绑定
+        el:"#edit",
+        data:{
+            message:'这是一段message'
+        },
+        methods:{
+            getMessage:function () {
+                alert(this.message)
+            },
+            setMessage:function (){
+                this.message = 'wanglizhou'
+            }
+        }
+    })
+</script>
+</body>
+</html>

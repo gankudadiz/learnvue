@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,inital-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<!--记事本主题-->
+    <section id="todoapp">
+        <!--头部输入框-->
+        <header class="header">
+            <h1>小黑记事本</h1>
+            <input autofocus="autofocus" autocomplete="off" placeholder="请输入文字" v-model="inputValue" @keyup.enter="addNew">
+        </header>
+        <!--列表区域-->
+        <section class="main">
+            <ul class="todo-list">
+                <li v-for="(item,key) in messageList">
+                    <span class="index">{{key+1}}.</span>
+                    <label>{{item}}</label>
+                    <button class="destory" @click="removeText(key)">X</button>
+                </li>
+            </ul>
+        </section>
+        <!--统计和清空-->
+        <footer class="footer">
+            <span v-if="messageList.length != 0">
+                <strong>{{messageList.length}}</strong>条数据
+            </span>
+            <span v-show="messageList.length != 0">
+                <input type="button" value="清空" @click="clear">
+            </span>
+        </footer>
+    </section>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#todoapp",
+        data:{
+            inputValue:'',
+            messageList:[]
+        },
+        methods:{
+            addNew:function () {
+                this.messageList.push(this.inputValue);
+                this.inputValue = ''
+            },
+            removeText:function(key){
+                this.messageList.splice(key,1);
+            },
+            clear:function (){
+                this.messageList = []
+            }
+        }
+    })
+</script>
+</body>
+</html>

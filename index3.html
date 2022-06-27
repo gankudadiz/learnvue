@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,inital-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <img v-bind:src="imgArr[index]" alt="" width="200px">
+    <a href="#" @click="prev" v-show="index>0">上一张1</a>
+    <a href="#" @click="next" v-show="index<imgArr.length-1">下一张</a>
+</div>
+
+<div id="xunhuan">
+    <input type="button" @click="add" value="添加数据">
+    <input type="button" @click="remove" value="移除数据">
+    <ul>
+        <li v-for="(item,index) in objArr">{{index+1}}.{{item.name}}</li>
+    </ul>
+    <ul>
+        <li v-for="item in objArr">{{item.name}}</li>
+    </ul>
+    <ul>
+        <li v-for="a in city">{{a}}</li>
+<!--        <li V-for="b in city">{{c}}</li>-->
+    </ul>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            imgArr:[
+                "20220419074926_2cec9.jpg",
+                "7b3817ee76c6a7ef518a1bf1b8faaf51f2de6660.jpg",
+                "42a98226cffc1e17ba56f9f6d0f4010a718de9fe.jpeg",
+                "c2f60ab0cb134954620413b2134e9258d0094afd.png"
+            ],
+            index:0   //图片索引
+        },
+        methods:{
+            prev:function (){
+                //上一张
+                this.index--
+            },
+            next:function (){
+                //下一张
+                this.index++
+            }
+        }
+    })
+
+    var xunhuan =new Vue({
+        el:"#xunhuan",
+        data:{
+            city:['北京','上海','广州','深圳'],
+            objArr:[
+                {name:'西兰花'},
+                {name:'豆芽菜'}
+            ]
+        },
+        methods:{
+            add:function (){
+                this.objArr.push({name:'咸鱼'});
+            },
+            remove:function () {
+                this.objArr.shift();
+            }
+        }
+    })
+</script>
+</body>
+</html>
